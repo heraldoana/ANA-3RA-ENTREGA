@@ -124,8 +124,9 @@ function agregarProductoAlCarrito(productos, e) {
 }
 
 function renderizarCarrito(productosEnCarrito) {
+  let divCarrito = document.getElementById("carrito")
   if (productosEnCarrito.length > 0) {
-    let divCarrito = document.getElementById("carrito")
+  
     divCarrito.innerHTML = ""
 
     productosEnCarrito.forEach(producto => {
@@ -145,14 +146,13 @@ function renderizarCarrito(productosEnCarrito) {
     boton.addEventListener("click", finalizarCompra)
     divCarrito.appendChild(boton)
   }
-}
 
-function finalizarCompra() {
-  let carrito = document.getElementById("carrito")
-  let carritoRecuperado = JSON.parse(localStorage.getItem("carrito"))
-  carrito.innerHTML = ""
+  let parrafo = document.createElement("p")
+  parrafo.innerHTML= "hola"
+  
 
   let total = 0
+  let carritoRecuperado = JSON.parse(localStorage.getItem("carrito")) || []
   if (carritoRecuperado.length === 0) {
     alert("Primero debe agregar productos al carrito")
   } else {
@@ -166,14 +166,19 @@ function finalizarCompra() {
   <p>total a pagar $${total}  </p>
   </div>
   `
-  divCarritoTotal.appendChild(tarjTotalCarrito)
+  divCarrito.appendChild(tarjTotalCarrito)
+    
   localStorage.removeItem("carrito")
   }
 
 }
 
+function finalizarCompra() {
+  let carrito = document.getElementById("carrito")
 
-
+  carrito.innerHTML = ""
+alert("gracias por su compra")
+}
 
 let botonVerOcultar = document.getElementById("verOcultar")
 botonVerOcultar.addEventListener("click", verOcultarCarrito)
